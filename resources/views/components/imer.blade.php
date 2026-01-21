@@ -33,20 +33,15 @@
                         @endif
                     </div>
 
-                    <div class="flex gap-1">
-                        <a href="/imers/{{ $imer->id }}/edit" class="btn btn-ghost btn-xs">
-                            Edit
-                        </a>
-                        <form method="POST" action="/imers/{{ $imer->id }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit"
-                                onclick="return confirm('Are you sure you want to delete this imer?')"
-                                class="btn btn-ghost btn-xs text-error">
-                                Delete
-                            </button>
-                        </form>
-                    </div>
+                    @can('update', $imer)
+                        <div class="flex gap-1">
+                            <a href="/imers/{{ $imer->id }}/edit" class="btn btn-ghost btn-xs"> Edit </a>
+                            <form method="POST" action="/imers/{{ $imer->id }}"> @csrf @method('DELETE') <button
+                                    type="submit" onclick="return confirm('Are you sure you want to delete this IMer?')"
+                                    class="btn btn-ghost btn-xs text-error"> Delete </button>
+                            </form>
+                        </div>
+                    @endcan
                 </div>
                 <p class="mt-1">{{ $imer->message }}</p>
             </div>

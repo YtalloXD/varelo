@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Imer;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
 class IMerController extends Controller
 {
+    use AuthorizesRequests;
     public function index()
     {
     $imers = Imer::with('user')
@@ -38,10 +40,7 @@ class IMerController extends Controller
             "message.max" => "IMer message cannot exceed 255 characters.",
         ]);
 
-        Imer::create([
-            'message' => $validated['message'],
-            // 'user_id' => null,
-        ]);
+        auth()->user()->imers()->create($validated);
 
                 // Obtenha o número de IMers enviados pelo usuário do cache
         $imersCount = Cache::get('user_imers_count', 0);
@@ -72,6 +71,9 @@ class IMerController extends Controller
      */
     public function edit(Imer $imer)
     {
+
+        $this->authorize('update', $imer);
+
         return view('imers.edit', compact('imer'));
     }
 
@@ -80,6 +82,9 @@ class IMerController extends Controller
      */
     public function update(Request $request, Imer $imer)
     {
+
+        $this->authorize('update', $imer);
+
         $validated = $request->validate(
  [
             'message' => 'required|string|max:255',
@@ -96,9 +101,9 @@ class IMerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(IMer $imer)
+    public function destroy(Imer $imer)
     {
-        // $this->authorize('delete', $imer);
+        $this->authorize('delete', $imer);
 
         $imer->delete();
 
