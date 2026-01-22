@@ -1,4 +1,22 @@
+//PHP code outside the home layout
+@php
+    $placeholders = [
+        "What's up?",
+        "What's on your mind?",
+        "Share something interesting...",
+        "What are you thinking?",
+        "Tell us what's happening!",
+        "What's new?",
+        "Share your thoughts...",
+        "What's going on?",
+        "What's the latest?",
+        "Express yourself...",
+        "Thinking time...",
+    ];
+    $randomPlaceholder = $placeholders[array_rand($placeholders)];
+@endphp
 
+//Home layout
 <x-layout>
     @if ($errors->any())
         {{ dd($errors->all()) }}
@@ -18,7 +36,7 @@
                     <div class="form-control w-full">
                         <textarea
                             name="message"
-                            placeholder="What's on your mind?"
+                            placeholder="{{ $randomPlaceholder }}"
                             class="textarea textarea-bordered w-full resize-none"
                             @error('message')
                             textarea-error

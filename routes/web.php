@@ -24,15 +24,17 @@ Route::view('/register', 'auth.register')
 Route::post('/register', Register::class)
     ->middleware('guest');
 
+    
+// LOGOUT ROUTES
+Route::post('/logout', Logout::class)
+    ->middleware('auth')
+    ->name('logout');
+    
+
 // LOGIN ROUTES
 Route::view('/login', 'auth.login')
     ->middleware('guest')
     ->name('login');
-Route::post('/login', Login::class)
+
+Route::post('login', Login::class)
     ->middleware('guest');
-
-
-// LOGOUT ROUTES
-Route::post('/logout', Logout::class)
-    ->middleware('auth');
-

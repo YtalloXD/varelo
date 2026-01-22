@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Cache;
 class IMerController extends Controller
 {
     use AuthorizesRequests;
+    
     public function index()
     {
     $imers = Imer::with('user')
