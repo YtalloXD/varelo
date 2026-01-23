@@ -21,7 +21,14 @@
         </div>
         <div class="navbar-end gap-2">
             @auth
-                <span class="text-sm">{{ auth()->user()->name }}</span>
+                <a href="/profile" class="btn btn-ghost btn-sm">
+                @if (auth()->user()->profile_image)
+                    <img src="{{ asset('storage/' . auth()->user()->profile_image) }}" alt="Profile Image" height="64" width="64">
+                @else
+                    <img src="{{ asset('default-avatar.png') }}" alt="Default Image" height="64" width="64">
+                @endif
+                <span class="text-sm">{{ auth()->user()->name }}</span></a>
+                
                 <form method="POST" action="/logout" class="inline">
                     @csrf
                     <button type="submit" class="btn btn-ghost btn-sm">Logout</button>

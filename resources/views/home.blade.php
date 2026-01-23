@@ -1,23 +1,21 @@
-//PHP code outside the home layout
-@php
-    $placeholders = [
-        "What's up?",
-        "What's on your mind?",
-        "Share something interesting...",
-        "What are you thinking?",
-        "Tell us what's happening!",
-        "What's new?",
-        "Share your thoughts...",
-        "What's going on?",
-        "What's the latest?",
-        "Express yourself...",
-        "Thinking time...",
-    ];
-    $randomPlaceholder = $placeholders[array_rand($placeholders)];
-@endphp
-
-//Home layout
 <x-layout>
+    @php
+        $placeholders = [
+            "What's up?",
+            "What's on your mind?",
+            "Share something interesting...",
+            "What are you thinking?",
+            "Tell us what's happening!",
+            "What's new?",
+            "Share your thoughts...",
+            "What's going on?",
+            "What's the latest?",
+            "Express yourself...",
+            "Thinking time...",
+        ];
+        $randomPlaceholder = $placeholders[array_rand($placeholders)];
+    @endphp
+
     @if ($errors->any())
         {{ dd($errors->all()) }}
     @endif

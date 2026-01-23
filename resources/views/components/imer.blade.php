@@ -7,8 +7,13 @@
             @if ($imer->user)
                 <div class="avatar">
                     <div class="size-10 rounded-full">
-                        <img src="<https://avatars.laravel.cloud/>{{ urlencode($imer->user->email) }}"
-                            alt="{{ $imer->user->name }}'s avatar" class="rounded-full" />
+                        {{-- <img src="<https://avatars.laravel.cloud/>{{ urlencode($imer->user->email) }}"
+                            alt="{{ $imer->user->name }}'s avatar" class="rounded-full" /> --}}
+                            @if (auth()->user()->profile_image)
+                                <img src="{{ asset('storage/' . auth()->user()->profile_image) }}" alt="Profile Image" width="150">
+                            @else
+                                <img src="{{ asset('default-avatar.png') }}" alt="Default Image" width="150">
+                            @endif
                     </div>
                 </div>
             @else

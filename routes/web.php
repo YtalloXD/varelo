@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\Login;
 use App\Http\Controllers\Auth\Logout;
 use App\Http\Controllers\Auth\Register;
@@ -38,3 +39,12 @@ Route::view('/login', 'auth.login')
 
 Route::post('login', Login::class)
     ->middleware('guest');
+
+//PROFILE PICTURE UPLOAD ROUTE
+Route::view('/profile','profile')
+    ->middleware('auth')
+    ->name('profile');
+
+Route::post('/profile/upload', [ProfileController::class, 'upload'])
+    ->middleware('auth')
+    ->name('profile.upload');
