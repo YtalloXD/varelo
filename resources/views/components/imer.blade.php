@@ -2,7 +2,7 @@
 @props(['imer'])
 
 <div class="card bg-base-100 shadow">
-    <div class="card-body transition-all duration-300 ease-in-out hover:translate-y-[-2px] hover:shadow-lg cursor-pointer">
+    <div class="card-body transition-all duration-300 ease-in-out hover:translate-y-px hover:shadow-lg cursor-pointer">
         <div class="flex space-x-3">
             @if ($imer->user)
                 <div class="avatar">
