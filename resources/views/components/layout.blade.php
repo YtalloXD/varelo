@@ -29,6 +29,13 @@
                 @endif
                 <span class="text-sm">{{ auth()->user()->name }}</span></a>
                 
+                <form action="{{ route('theme.toggle') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="theme-toggle">
+                        {{ session('theme') === 'dark' ? '☀️' : '🌙' }}
+                    </button>
+                </form>
+
                 <form method="POST" action="/logout" class="inline">
                     @csrf
                     <button type="submit" class="btn btn-ghost btn-sm">Logout</button>

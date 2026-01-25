@@ -48,3 +48,15 @@ Route::view('/profile','profile')
 Route::post('/profile/upload', [ProfileController::class, 'upload'])
     ->middleware('auth')
     ->name('profile.upload');
+
+//THEME TOGGLER
+Route::post('/theme-toggle', function () {
+    $current = session('theme', 'light');
+
+    session([
+        'theme' => $current === 'dark' ? 'light' : 'dark'
+    ]);
+
+    return back();
+})->name('theme.toggle');
+    

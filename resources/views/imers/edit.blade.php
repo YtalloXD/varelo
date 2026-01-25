@@ -9,6 +9,15 @@
 
         <div class="card bg-base-100 shadow mt-8">
             <div class="card-body">
+                <div class="flex items-center gap-1.5">
+                    @if (auth()->user()->profile_image)
+                        <img src="{{ asset('storage/' . auth()->user()->profile_image) }}" alt="Profile Image" class="w-10 h-10 rounded-full object-cover">
+                    @else
+                        <img src="{{ asset('default-avatar.png') }}" alt="Default Image" class="w-10 h-10 rounded-full object-cover">
+                    @endif
+                    <span class="text-sm">{{ auth()->user()->name }}</span>
+                </div>
+
                 <form method="POST" action="/imers/{{ $imer->id }}">
                     @csrf
                     @method('PUT')

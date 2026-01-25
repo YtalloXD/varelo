@@ -3,6 +3,9 @@
         Profile Settings
     </x-slot:title>
 
+    <!-- Cropper.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css" integrity="sha512-shhSQd4rR9r+KKrnm4gtBqHXKO6e4ri6ZlP/S5o88RBkbBL3F6sYpB3smc6D24M9zUY7vomJvp8lb7A4O+/p+g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <div class="max-w-2xl mx-auto mt-8">
         <h1 class="text-3xl font-bold mb-8">Profile Settings</h1>
 
@@ -49,7 +52,7 @@
                     </div>
                 </div>
 
-                <form action="{{ route('profile.upload') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('profile.upload') }}" method="POST" enctype="multipart/form-data" id="profileForm">
                     @csrf
 
                     <div class="form-control w-full">
@@ -72,7 +75,7 @@
                     </div>
 
                     <div class="mt-4 flex items-center justify-end">
-                        <button type="submit" class="btn btn-primary">Upload</button>
+                        <button type="submit" class="btn btn-primary" id="uploadBtn">Upload</button>
                     </div>
                 </form>
             </div>
